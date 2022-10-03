@@ -31,11 +31,11 @@ function mudaTitulo(novoTitulo) {
 mudaTitulo("Lute como uma garota!");
 // expressão de função - Function Expression
 //função anônima
-const mudaTitulo2 = function (novoTitulo) {
-  document.querySelector("h2").innerHTML = novoTitulo;
+const mudaTitulo2 = function (target, novoTitulo) {
+  document.querySelector(target).innerHTML = novoTitulo;
 };
 
-mudaTitulo2("Trocando o subtítulo");
+mudaTitulo2("h1","Trocando o subtítulo");
 
 //  Arrow Function - É uma função criada no ES6 ou ES2015
 // não existe o this dentro de uma arrow function.
@@ -43,7 +43,21 @@ mudaTitulo2("Trocando o subtítulo");
 // sintaxe mais simples e prática.
 const relogio = () => {
   const date = new Date();
-  mudaTitulo2(date.toLocaleTimeString());
+  mudaTitulo2("h2",date.toLocaleTimeString());
 };
 
 setInterval(relogio, 1000);
+
+const frases = ["Lute como uma garota!", "Você é uma campeã!", "Por mim e por todas!"];
+
+const mudaFrase = (alvo, texto, tempo) => {
+
+let total = 2;
+setInterval(() => {
+  document.querySelector(alvo).innerHTML = 
+    texto[total >= texto.length - 1 ? (total = 0) :(total += 1)];
+},tempo * 1000);
+
+}
+
+mudaFrase("h1",frases, 4);
